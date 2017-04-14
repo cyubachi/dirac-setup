@@ -16,6 +16,7 @@
                  [org.clojure/clojurescript "1.9.495"
                   :scope "provided"]
                  [secretary "1.2.3"]
+                 [binaryage/dirac "1.2.4"]
                  [venantius/accountant "0.1.9"
                   :exclusions [org.clojure/tools.reader]]]
 
@@ -58,8 +59,8 @@
              :compiler
              {:main "reagent-test.dev"
               :asset-path "/js/out"
-              :output-to "target/cljsbuild/public/js/app.js"
-              :output-dir "target/cljsbuild/public/js/out"
+              :output-to "resources/public/js/app.js"
+              :output-dir "resources/public/js/out"
               :source-map true
               :optimizations :none
               :pretty-print  true
@@ -97,7 +98,6 @@
                                   [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2-SNAPSHOT"]
                                   [pjstadig/humane-test-output "0.8.1"]
-                                  [binaryage/dirac "RELEASE"]
                                   ]
 
                    :source-paths ["env/dev/clj"]
