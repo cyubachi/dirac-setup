@@ -62,7 +62,8 @@
               :output-dir "target/cljsbuild/public/js/out"
               :source-map true
               :optimizations :none
-              :pretty-print  true}}
+              :pretty-print  true
+              :preloads [dirac.runtime.preload]}}
 
 
 
@@ -82,15 +83,21 @@
 
 
   :profiles {:dev {:repl-options {:init-ns reagent-test.repl
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                                  :port 8230
+                                  :init (do
+                                          (require 'dirac.agent)
+                                          (dirac.agent/boot!))
+                                  :nrepl-middleware [dirac.nrepl/middleware
+                                                     cemerick.piggieback/wrap-cljs-repl]}
 
                    :dependencies [[ring/ring-mock "0.3.0"]
                                   [ring/ring-devel "1.5.1"]
                                   [prone "1.1.4"]
                                   [figwheel-sidecar "0.5.9"]
-                                  [org.clojure/tools.nrepl "0.2.12"]
+                                  [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2-SNAPSHOT"]
                                   [pjstadig/humane-test-output "0.8.1"]
+                                  [binaryage/dirac "RELEASE"]
                                   ]
 
                    :source-paths ["env/dev/clj"]
